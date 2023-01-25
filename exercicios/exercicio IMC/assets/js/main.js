@@ -14,34 +14,39 @@ function meuEscopo() {
         return p
     }
     
-    function setResultado(msg){
+    function setResultado(msg, cor){
         const resultado = document.querySelector('#resultado')
         resultado.innerHTML = ''
         const p = criaP()
-        p.classList.add('paragrafo-resultado')
+        if(cor){
+            p.classList.add('paragrafo-resultado')
+        } else {
+            p.classList.add('bad')
+        }
+        
         p.innerHTML = msg
         resultado.appendChild(p)
     }
 
     function calcularIMC(peso, altura){
-        if (peso === 0 || Number.isNaN(peso)) {
-            setResultado(`Peso inválido`)
-        } else if (altura === 0 || Number.isNaN(altura)) {
-            setResultado(`Altura inválida`)
+        if (!peso) {
+            setResultado(`Peso inválido`, false)
+        } else if (!altura) {
+            setResultado(`Altura inválida`, false)
         } else {
             const imc = peso / (altura * altura)
             if (imc < 18.5) {
-                setResultado(`Seu IMC é ${imc.toFixed(2)} (Abaixo do peso).`)
+                setResultado(`Seu IMC é ${imc.toFixed(2)} (Abaixo do peso).`, true)
             } else if (imc <= 24.9) {
-                setResultado(`Seu IMC é ${imc.toFixed(2)} (Peso normal).`)
+                setResultado(`Seu IMC é ${imc.toFixed(2)} (Peso normal).`, true)
             } else if (imc <= 29.9) {
-                setResultado(`Seu IMC é ${imc.toFixed(2)} (Sobrepeso).`)
+                setResultado(`Seu IMC é ${imc.toFixed(2)} (Sobrepeso).`, true)
             } else if (imc <= 34.9) {
-                setResultado(`Seu IMC é ${imc.toFixed(2)} (Obesidade grau 1).`)
+                setResultado(`Seu IMC é ${imc.toFixed(2)} (Obesidade grau 1).`, true)
             } else if (imc <= 39.9) {
-                setResultado(`Seu IMC é ${imc.toFixed(2)} (Obesidade grau 2).`)
+                setResultado(`Seu IMC é ${imc.toFixed(2)} (Obesidade grau 2).`, true)
             } else {
-                setResultado(`Seu IMC é ${imc.toFixed(2)} (Obesidade grau 3).`)
+                setResultado(`Seu IMC é ${imc.toFixed(2)} (Obesidade grau 3).`, true)
             }
         }
     }

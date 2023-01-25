@@ -65,6 +65,10 @@ form button:active {
 
 .paragrafo-resultado{
     font-size: 0.8em;
-    background: rgb(228, 117, 117);
+    background: rgb(139, 228, 117);
     padding: 10px 20px;    
+}
+
+.bad {
+    background: rgb(228, 117, 117);
 }
