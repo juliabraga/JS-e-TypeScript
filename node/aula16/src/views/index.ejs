@@ -1,0 +1,19 @@
+<%- include('includes/head') %>
+
+  <section class="container">
+    <h1>
+      <%# texto comentado%>
+        <%= titulo%> <br>
+        <% numeros.forEach(num=> {%>
+        <%=num %> <br>
+        <% }) %>
+        <%= umaVariavelGlobal %>
+    </h1>
+    <form action="/" method="post">
+      <label for="">Cliente</label>
+      <input type="text" name="nome" id="">
+      <button type="submit">Enviar</button>
+    </form>
+  </section>
+
+<%- include('includes/footer') %>
