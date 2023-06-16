@@ -4,15 +4,18 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-2"></div>
+
     <div class="col-lg-8 my-3">
       <h1 class="text-center">Contatos</h1>
-      <p class="text-center lead">Criar ou editar contatos criados.</p>
+      <p class="text-center lead">Criar ou editar contatos criados de <%= user.email %>.</p>
       
+
       <%- include('includes/message') %>
 
       <div class="row">
         <div class="col-lg">
           <form action="/contato/register" method="POST">
+            <input type="hidden" name="_csrf" value=<%= csrfToken%>>
             <div class="form-group">
               <label>Nome</label>
               <input type="text" class="form-control" name="nome">
