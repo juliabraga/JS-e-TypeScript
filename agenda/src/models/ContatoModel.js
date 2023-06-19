@@ -18,13 +18,23 @@ class Contato {
         this.errors = [];
         this.contato = null;
     }
+    
     async register() {
         this.valida();
 
         if (this.errors.length > 0) return;
-        
+
         this.contato = await ContatoModel.create(this.body);
     }
+    
+    async edit(id) {
+        if (typeof id != 'string') return;
+        this.valida();
+        if (this.errors.length > 0) return;
+
+        this.contato = await ContatoModel.findByIdAndUpdate(id, this.body, {new: true})
+    }
+    
     valida() {
         //limpa dados
         this.cleanUp();
@@ -51,10 +61,12 @@ class Contato {
             telefone: this.body.telefone,
         };
     }
+
+    
 }
 
-Contato.buscaPorId = async function(id){
-    if(typeof id !='string') return
+Contato.buscaPorId = async function (id) {
+    if (typeof id != 'string') return
     const user = await ContatoModel.findById(id)
     return user
 }
