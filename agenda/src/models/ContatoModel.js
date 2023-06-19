@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const { async } = require('regenerator-runtime')
 const validator = require('validator')
 
 const ContatoSchema = new mongoose.Schema({
@@ -33,7 +34,9 @@ class Contato {
         //precisa ter nome
         if (!this.body.nome) this.errors.push('Nome é um campo obrigatório');
         //precisa ter email ou telefone
-        if (!this.body.email && !this.body.telefone) this.errors.push('Um e-mail ou telefone precisa ser informado.');
+        if (!this.body.email && !this.body.telefone) {
+            this.errors.push('Um e-mail ou telefone precisa ser informado.')
+        };
     }
     cleanUp() {
         for (const key in this.body) {
@@ -50,4 +53,9 @@ class Contato {
     }
 }
 
+Contato.buscaPorId = async function(id){
+    if(typeof id !='string') return
+    const user = await ContatoModel.findById(id)
+    return user
+}
 module.exports = Contato

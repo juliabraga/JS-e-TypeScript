@@ -10,7 +10,7 @@ exports.index = (req, res) => {
 
 exports.logout = (req, res) => {
     req.session.destroy()
-    res.redirect('/')
+    res.redirect('../login')
 }
 
 exports.login = async (req, res) => {

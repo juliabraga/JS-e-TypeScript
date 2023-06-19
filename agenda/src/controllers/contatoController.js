@@ -6,25 +6,36 @@ exports.index = (req, res) => {
     })
 }
 
-
 exports.register = async (req, res) => {
     try {
         const contato = new Contato(req.body);
         await contato.register()
         
         if (contato.errors.length > 0) {
+            console.log('deu erro', contato.errors)
             req.flash('errors', contato.errors);
             req.session.save(() => res.redirect('../contato'))
             return
         }
         
         req.flash('success', 'Contato cadastrado')
-        req.session.user = contato.user
-        req.session.save(() => res.redirect('../contato'))
+        console.log('contato criado', contato.errors)
+        req.session.save(() => res.redirect(`/contato/index/${contato.contato._id}`))
         return
 
     } catch (e) {
         console.log(e);
         return res.render('404')
     }
+}
+
+exports.editIndex = async (req, res) => {
+    if(!req.params.id) return res.render('404')
+
+    const contato = await Contato.buscaPorId(req.params.id)
+    if(!contato) return res.render('404')
+
+    res.render('contato', {
+        contato
+    })
 }
