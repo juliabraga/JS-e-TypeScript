@@ -67,7 +67,22 @@ class Contato {
 
 Contato.buscaPorId = async function (id) {
     if (typeof id != 'string') return
-    const user = await ContatoModel.findById(id)
-    return user
+    const contato = await ContatoModel.findById(id)
+    return contato
 }
+
+Contato.buscaContatos = async function () {
+    
+    const contatos = await ContatoModel.find()
+        .sort({criadoEm: 1}) // 1 para crescente e -1 para decrescente
+    return contatos
+}
+
+Contato.delete = async function (id) {
+    if (typeof id != 'string') return
+
+    const contato = await ContatoModel.findByIdAndDelete(id)
+    return contato
+}
+
 module.exports = Contato
