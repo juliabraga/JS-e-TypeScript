@@ -12,34 +12,34 @@
       <%- include('includes/message') %>
 
       <div class="row">
-        <div class="col-lg">
+        <div class="col-lg my-5">
           <h4>Faça seu cadastro</h4>
           <p>Se você ainda não tem conta preencha os dados abaixo</p>
-          <form action="/login/register" method="POST">
+          <form class="form-cadastro" action="/login/register" method="POST">
             <input type="hidden" name="_csrf" value=<%= csrfToken%>>
             <div class="form-group">
               <label for="email">Seu e-mail</label>
-              <input type="email" class="form-control" name="email" id="email" autocomplete="email">
+              <input type="email" class="form-control" name="email" id="email-cadastro" autocomplete="email">
             </div>
             <div class="form-group">
               <label for="password">Senha</label>
-              <input type="password" class="form-control" name="password" id="password">
+              <input type="password" class="form-control" name="password" id="password-cadastro">
             </div>
             <button type="submit" class="btn btn-primary">Criar conta</button>
           </form>
         </div>
-        <div class="col-lg">
+        <div class="col-lg my-5">
           <h4>Entrar com seus dados</h4>
           <p>Se você já tem conta informe os dados abaixo para entrar</p>
-          <form action="/login/login" method="POST">
+          <form class="form-login" action="/login/login" method="POST">
             <input type="hidden" name="_csrf" value=<%= csrfToken%>>
             <div class="form-group">
               <label for="email">Seu e-mail</label>
-              <input type="email" class="form-control" name="email" id="email" autocomplete="email">
+              <input type="email" class="form-control" name="email" id="email-login" autocomplete="email">
             </div>
             <div class="form-group">
               <label for="password">Senha</label>
-              <input type="password" class="form-control" name="password" id="password">
+              <input type="password" class="form-control" name="password" id="password-login">
             </div>
             <button type="submit" class="btn btn-primary">Entrar</button>
           </form>
